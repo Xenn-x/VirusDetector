@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Android Security</title>
+
+<style>
+body{
+background:black;
+color:#00ff00;
+font-family:monospace;
+padding:20px;
+overflow:hidden;
+}
+
+h1{
+color:red;
+text-align:center;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{opacity:0;}
+}
+
+#progress{
+width:100%;
+height:30px;
+background:#222;
+margin-top:20px;
+}
+
+#bar{
+width:0%;
+height:100%;
+background:red;
+}
+
+.warning{
+color:red;
+font-size:20px;
+margin-top:20px;
+}
+
+button{
+margin-top:30px;
+padding:15px;
+font-size:18px;
+background:red;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+.flash{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:red;
+opacity:0;
+animation:flash 0.4s infinite;
+pointer-events:none;
+}
+
+@keyframes flash{
+0%{opacity:0;}
+50%{opacity:0.2;}
+100%{opacity:0;}
+}
+
+#matrix{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+color:#00ff00;
+font-family:monospace;
+font-size:14px;
+opacity:0.15;
+pointer-events:none;
+overflow:hidden;
+white-space:pre;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="flash"></div>
+<div id="matrix"></div>
+
+<h1>⚠ ANDROID SECURITY WARNING ⚠</h1>
+
+<p>Scanning system files...</p>
+
+<div id="progress">
+<div id="bar"></div>
+</div>
+
+<p id="percent">0%</p>
+
+<p class="warning" id="status"></p>
+
+<button onclick="fix()">FIX VIRUS NOW</button>
+
+<script>
+
+let width = 0;
+
+let bar = document.getElementById("bar");
+let percent = document.getElementById("percent");
+let status = document.getElementById("status");
+const sound = new Audio("./sound1.mp3");
+
+
+
+let scan = setInterval(function(){
+
+if(width >= 100){
+
+clearInterval(scan);
+
+status.innerHTML="⚠ 932 VIRUSES DETECTED ⚠";
+
+setTimeout(()=>{
+alert("WARNING! Your phone is infected!");
+},1000);
+
+setTimeout(()=>{
+alert("Scanning personal files...");
+},3000);
+
+setTimeout(()=>{
+alert("System security compromised...");
+},5000);
+
+setTimeout(()=>{
+alert("Device AKAN MELEDAK!");
+},7000);
+
+}
+
+else{
+
+width++;
+
+bar.style.width = width + "%";
+percent.innerHTML = width + "%";
+
+if(width==30){
+status.innerHTML="Checking apps...";
+}
+
+if(width==55){
+status.innerHTML="Suspicious activity detected...";
+}
+
+if(width==80){
+status.innerHTML="Malware detected!";
+}
+
+}
+
+},80);
+
+function fix(){
+alert("System repairing...");
+setTimeout(()=>{
+alert("😂 Tenang! Ini cuma prank!");
+},2000);
+}
+
+/* efek angka seperti hacker */
+
+const matrix = document.getElementById("matrix");
+
+function randomLine(){
+
+let chars="01 0110 101 0101 01 010101 0110 10101  0101 01 011010  01";
+let line="";
+
+for(let i=0;i<80;i++){
+line+=chars[Math.floor(Math.random()*chars.length)];
+}
+
+return line;
+
+}
+
+setInterval(()=>{
+
+matrix.innerText += randomLine() + "\n";
+
+if(matrix.innerText.length>3000){
+matrix.innerText = matrix.innerText.substring(1000);
+}
+
+},100);
+sound.loop = true;
+sound.play();
+
+</script>
+
+</body>
+</html>
