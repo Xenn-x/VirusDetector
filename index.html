@@ -32,7 +32,7 @@ margin-top:20px;
 #bar{
 width:0%;
 height:100%;
-background:red;
+background: lightgreen;
 }
 
 .warning{
@@ -59,7 +59,7 @@ width:100%;
 height:100%;
 background:red;
 opacity:0;
-animation:flash 0.4s infinite;
+animation:flash 0.9s infinite;
 pointer-events:none;
 }
 
@@ -68,13 +68,13 @@ pointer-events:none;
 50%{opacity:0.2;}
 100%{opacity:0;}
 }
-
+/* matrix full screen */
 #matrix{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
 color:#00ff00;
 font-family:monospace;
 font-size:14px;
@@ -92,7 +92,7 @@ white-space:pre;
 <div class="flash"></div>
 <div id="matrix"></div>
 
-<h1>⚠ ANDROID SECURITY WARNING ⚠</h1>
+<h1 id="h1">⚠ ANDROID SECURITY WARNING ⚠</h1>
 
 <p>Scanning system files...</p>
 
@@ -104,7 +104,7 @@ white-space:pre;
 
 <p class="warning" id="status"></p>
 
-<button onclick="fix()">FIX VIRUS NOW</button>
+<button onclick="fix()" id="btn">FIX VIRUS NOW</button>
 
 <script>
 
@@ -114,31 +114,37 @@ let bar = document.getElementById("bar");
 let percent = document.getElementById("percent");
 let status = document.getElementById("status");
 const sound = new Audio("./sound1.mp3");
+let flash = document.querySelector(".flash");
+let header = document.getElementById("h1");
+let btn = document.getElementById("btn");
 
+flash.style.background = "none";
 
+btn.style.display = "none";
 
+header.innerHTML = "⚠ ANDROID SECURITY SCANNING ⚠";
+header.style.color = "green";
 let scan = setInterval(function(){
 
 if(width >= 100){
 
 clearInterval(scan);
 
-status.innerHTML="⚠ 932 VIRUSES DETECTED ⚠";
-
+status.innerHTML="⚠ 9312 VIRUSES DETECTED ⚠";
+btn.style.display = "block";
 setTimeout(()=>{
 alert("WARNING! Your phone is infected!");
 },1000);
 
 setTimeout(()=>{
-alert("Scanning personal files...");
 },3000);
 
 setTimeout(()=>{
-alert("System security compromised...");
+
 },5000);
 
 setTimeout(()=>{
-alert("Device AKAN MELEDAK!");
+alert("Device will explode!! ");
 },7000);
 
 }
@@ -160,6 +166,16 @@ status.innerHTML="Suspicious activity detected...";
 
 if(width==80){
 status.innerHTML="Malware detected!";
+//run style .flash
+bar.style.background = "red";
+flash.style.background = "none";
+
+header.innerHTML = "⚠ ANDROID SECURITY WARNING! ⚠";
+header.style.color = "red";
+
+sound.loop = true;
+sound.play();
+
 }
 
 }
@@ -179,7 +195,7 @@ const matrix = document.getElementById("matrix");
 
 function randomLine(){
 
-let chars="01 0110 101 0101 01 010101 0110 10101  0101 01 011010  01";
+let chars="01 0110 101 0101 01 010101 0110 10101  0101 01 01 11010 010101 010    0101010  1 0101 01011010  01";
 let line="";
 
 for(let i=0;i<80;i++){
@@ -199,8 +215,7 @@ matrix.innerText = matrix.innerText.substring(1000);
 }
 
 },100);
-sound.loop = true;
-sound.play();
+
 
 </script>
 
